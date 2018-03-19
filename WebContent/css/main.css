@@ -1,0 +1,135 @@
+@charset "gb2312";
+/* 全局常用设置 */
+* {
+	margin:0px;
+	padding:0px;
+}
+img {
+	border:0px;
+}
+body, th, td {
+	font-size:12px;
+}
+.cen {
+	margin:0px auto;
+	width:1000px;
+}
+html, body {margin:0px;
+	padding:0px;
+	
+}
+ul {
+	list-style-type: none; margin:0px;	padding:0px;
+}
+li{ list-style:none;}
+table {
+	margin:0px;
+	padding:0px;
+	border-collapse:collapse;
+	border:0px;
+}
+td {
+	padding:0;
+}
+/* 常用字体颜色 */
+.white {
+	color:#FFFFFF;
+}
+.black {
+	color:#000000;
+}
+.gray {
+	color:#777;
+}
+.red {
+	color:#FF0000;
+}
+.crimson {
+	color:#de0000;
+}
+.blue {
+	color:#006ecb;
+}
+.golden {
+	color:#fa6500;
+}
+.zi {
+	color:#c6062f;
+}
+/* 常用字号 */
+.f0 {
+	font-size:0px;
+}
+.f12 {
+	font-size:12px;
+}
+.f14 {
+	font-size:14px;
+}
+.f15 {
+	font-size:15px;
+}
+.f16 {
+	font-size:16px;
+}
+.f22 {
+	font-size:22px;
+}
+.f24 {
+	font-size:24px;
+}
+/* 常用格式 */
+.JuZhong {
+	margin:0 auto;
+}
+.Jushang {
+	margin-top:10px;
+}
+.Txt_center {
+	text-align:center;
+}
+.Txt_left {
+	text-align:left;
+}
+.Txt_right {
+	text-align:right;
+}
+.Txt_cu {
+	font-weight:bold;
+}
+.juli {
+	line-height:22px;
+}
+.lh22 {
+	line-height:22px;
+}
+.lh24 {
+	line-height:24px;
+}
+.lh25 {
+	line-height:25px;
+}
+.lh26 {
+	line-height:26px;
+}
+.lh28 {
+	line-height:28px;
+}
+.lh30 {
+	line-height:50px;
+}
+.main .nzb .about img {
+
+}
+/* 常用链接样式 */
+a {
+	text-decoration: none;
+	color:#737373;
+		line-height: 20px;
+
+ blr:expression_r(this.onFocus=this.blur());
+	outline:none;
+}
+a:focus {
+	-moz-outline-style: none;
+}
