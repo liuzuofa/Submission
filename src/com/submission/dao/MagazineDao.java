@@ -11,6 +11,9 @@ public interface MagazineDao {
 		//作者投稿--修改稿件
 		public int updateMagazine(Magazine magazine);
 		
+		//根据id删除periodical id
+		public int deleteMagazineById(int id);
+		
 		//通过稿件id查看稿件详细信息
 		public Magazine getMagazineById(int id);
 		
@@ -33,7 +36,7 @@ public interface MagazineDao {
 		public int updateMagazineEditorAndExpertById(int id, String editor, String expert);
 		
 		//根据id更新状态和periodical id
-		public int updateMagazineStateAndPeriodicalIdById(String state, int magazineId, int periodicalId);
+		public int updateMagazineStateAndPeriodicalIdById(String state, int magazineId, int periodicalId);	
 		
 		//根据id删除periodical id
 		public int deletePeriodicalIdById(int id);	

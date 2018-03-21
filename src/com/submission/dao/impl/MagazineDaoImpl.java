@@ -23,6 +23,12 @@ public class MagazineDaoImpl extends DBUtil implements MagazineDao {
 		String sql = "update magazine set state = ? , address = ? where id = ? ";
 		return super.execUpdateBackId(sql,magazine.getState(),magazine.getAddress(),magazine.getId());
 	}
+	
+	@Override
+	public int deleteMagazineById(int id) {
+		String sql = "delect from magazine where id = ? ";
+		return super.execUpdate(sql,id);
+	}
 
 	@Override
 	public Magazine getMagazineById(int id) {

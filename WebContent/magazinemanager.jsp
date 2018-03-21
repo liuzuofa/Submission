@@ -69,7 +69,8 @@
                                                 <td>${magazine.submission_time}</td>
                                                 <td>${magazine.subject}</td>
                                                 <td>${magazine.state}</td>
-                                                <td><a href=DetialServlet?id=${magazine.id}>查看</a></td>
+                                                <td><a class="waves-effect waves-light btn" id="btn_delete"
+														onclick='delect("${magazine.id}")'>删除稿件</a></td>
                                             </tr>
                                             </c:forEach>
                                         </tbody>
@@ -100,5 +101,27 @@
         <script src="assets/js/jquery.metisMenu.js"></script>
         <!-- Custom Js -->
         <script src="assets/js/custom-scripts.js"></script>
+        <script type="text/javascript">
+        function delect(id) {
+			$.ajax({
+				type : "post",
+				url : "UserServlet",
+				data : {
+					"method" : "delete",
+					"id" : id
+				},
+				success : function(result) {
+					console.log(result);
+					if (result == "success") {
+						alert("删除成功")
+						location.reload();
+					} else {
+						alert("删除失败，请重新删除")
+						location.reload();
+					}
+				}
+			});
+		}
+        </script>
 </body>
 </html>

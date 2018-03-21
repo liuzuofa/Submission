@@ -10,11 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-<<<<<<< HEAD
-Date: 2018-03-08 09:41:29
-=======
-Date: 2018-03-07 22:38:37
->>>>>>> 54b9fd655b41e65ccf234d0d3f5482ed8bd6024d
+Date: 2018-03-19 20:00:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -50,37 +46,7 @@ INSERT INTO `magazine` VALUES ('22', '基于javaweb的在线投稿系统', '使�
 INSERT INTO `magazine` VALUES ('23', '基于PHP的在线投稿系统', '使用PHP技术实现在线投稿审稿', '张三', '编辑待审', '/submission/pdf/基于javaweb的在线投稿系统.pdf', '计算机技术', '2017-12-30 14:10:44', '2018-03-07 20:19:59', null, null, '李四', '王老五', '同意', '拒绝', '0');
 INSERT INTO `magazine` VALUES ('24', '基于.NET的在线投稿系统', '使用.NET技术实现在线投稿审稿', '张三', '作者修改', '/submission/pdf/张三/基于Android平台课堂点名系统的设计与实现.pdf', '计算机技术', '2017-12-30 14:12:17', '2018-03-07 19:39:55', null, null, '李四', '王老五', '同意送审', '修改', '0');
 INSERT INTO `magazine` VALUES ('25', 'javaweb', 'javaweb', '张三', '已录用', '/submission/pdf/基于javaweb的在线投稿系统.pdf', '计算机技术', '2017-12-30 20:46:07', '2018-03-07 21:49:39', '2018-03-01 21:46:49', null, '李四', '王老五', '同意送审', '同意', '2');
-<<<<<<< HEAD
 INSERT INTO `magazine` VALUES ('27', 'web开发', 'web开发技术', '张三', '编辑待审', '/submission/pdf/张三/OpenCV入门教程.pdf', '计算机技术', '2018-03-08 09:20:44', null, null, null, null, null, null, null, '0');
-=======
->>>>>>> 54b9fd655b41e65ccf234d0d3f5482ed8bd6024d
-
--- ----------------------------
--- Table structure for operate
--- ----------------------------
-DROP TABLE IF EXISTS `operate`;
-CREATE TABLE `operate` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `mid` int(11) NOT NULL,
-  `operator` varchar(255) NOT NULL,
-  `time` varchar(255) NOT NULL,
-  `executor` varchar(255) DEFAULT NULL,
-  `content` varchar(255) NOT NULL,
-  `advise` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of operate
--- ----------------------------
-INSERT INTO `operate` VALUES ('40', '22', '张三', '2017-12-30 13:53:08', '编辑', '投稿', '');
-INSERT INTO `operate` VALUES ('41', '23', '张三', '2017-12-30 14:10:44', '编辑', '投稿', '');
-INSERT INTO `operate` VALUES ('42', '24', '张三', '2017-12-30 14:12:18', '编辑', '投稿', '');
-INSERT INTO `operate` VALUES ('43', '22', '李四', '2017-12-30 14:12:58', '王老五', '分配稿件', '');
-INSERT INTO `operate` VALUES ('44', '23', '李四', '2017-12-30 15:02:55', '本', '分配稿件', '');
-INSERT INTO `operate` VALUES ('45', '22', '王老五', '2017-12-30 15:03:45', '李四', '专家拒审', '');
-INSERT INTO `operate` VALUES ('46', '25', '张三', '2017-12-30 20:46:08', '编辑', '投稿', '');
-INSERT INTO `operate` VALUES ('47', '22', '李四', '2017-12-30 21:34:30', '本', '分配稿件', '');
 
 -- ----------------------------
 -- Table structure for periodical
@@ -129,12 +95,9 @@ INSERT INTO `permission` VALUES ('10', '录用稿件', 'MajorEditorServlet?metho
 INSERT INTO `permission` VALUES ('11', '新建期刊', 'majoreditornewperiodical.jsp');
 INSERT INTO `permission` VALUES ('12', '期刊管理', 'MajorEditorServlet?method=periodicalManager');
 INSERT INTO `permission` VALUES ('13', '个人中心', 'personal.jsp');
-<<<<<<< HEAD
 INSERT INTO `permission` VALUES ('14', '用户管理', 'UserServlet?method=getAllUsers');
 INSERT INTO `permission` VALUES ('15', '授权管理', 'UserServlet?method=getGrantUsers');
-=======
-INSERT INTO `permission` VALUES ('14', '用户中心', 'user.jsp');
->>>>>>> 54b9fd655b41e65ccf234d0d3f5482ed8bd6024d
+INSERT INTO `permission` VALUES ('16', '稿件管理', 'UserServlet?method=getAllMagazine');
 
 -- ----------------------------
 -- Table structure for role
@@ -185,10 +148,9 @@ INSERT INTO `role_permission` VALUES ('16', '4', '10');
 INSERT INTO `role_permission` VALUES ('17', '4', '11');
 INSERT INTO `role_permission` VALUES ('18', '4', '12');
 INSERT INTO `role_permission` VALUES ('19', '4', '13');
-<<<<<<< HEAD
 INSERT INTO `role_permission` VALUES ('20', '5', '14');
-=======
->>>>>>> 54b9fd655b41e65ccf234d0d3f5482ed8bd6024d
+INSERT INTO `role_permission` VALUES ('21', '5', '15');
+INSERT INTO `role_permission` VALUES ('22', '5', '16');
 
 -- ----------------------------
 -- Table structure for user
@@ -206,21 +168,17 @@ CREATE TABLE `user` (
   `state` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'summer', '1234', '读者', '张三', '本科', '123', '广州', '1');
-INSERT INTO `user` VALUES ('2', 'tom', '123', '编辑', '李四', '研究生', '123', '深圳', '1');
-INSERT INTO `user` VALUES ('3', 'jack', '123', '专家', '王老五', '博士', '123', '上海', '1');
-INSERT INTO `user` VALUES ('4', 'ben', '123', '主编', '本', '研究生', '123', '北京', '1');
-<<<<<<< HEAD
-INSERT INTO `user` VALUES ('5', 'tomcat', '123', '管理员', '汤姆', '本科', '123', '广州', '1');
-=======
-INSERT INTO `user` VALUES ('5', 'cat', '123', '读者', '小红', '本科', '123', '南昌', '1');
-INSERT INTO `user` VALUES ('7', 'tomcat', '123', '读者', '汤姆', '本科', '123', '广州', '1');
->>>>>>> 54b9fd655b41e65ccf234d0d3f5482ed8bd6024d
+INSERT INTO `user` VALUES ('1', 'summer', '1234', '读者', '张三', '本科', '123', '广州', '授权');
+INSERT INTO `user` VALUES ('2', 'tom', '123', '编辑', '李四', '研究生', '123', '深圳', '未授权');
+INSERT INTO `user` VALUES ('3', 'jack', '123', '专家', '王老五', '博士', '123', '上海', '授权');
+INSERT INTO `user` VALUES ('4', 'ben', '123', '主编', '本', '研究生', '123', '北京', '授权');
+INSERT INTO `user` VALUES ('5', 'tomcat', '123', '管理员', '汤姆', '本科', '123', '广州', '授权');
+INSERT INTO `user` VALUES ('8', '111', '111', '专家', '111', '111', '111', '111', '未授权');
 
 -- ----------------------------
 -- Table structure for user_role

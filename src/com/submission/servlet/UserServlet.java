@@ -98,13 +98,8 @@ public class UserServlet extends HttpServlet {
 		} else if ("getAllUsers".equals(method)) {
 			List<User> userList = new ArrayList<>();
 			userList = userdao.getAllUser();
-<<<<<<< HEAD
-			for (int i = 0; i < userList.size(); i++) {
-				if ("管理员".equals(userList.get(i).getType())){
-=======
 			for(int i = 0; i<userList.size(); i++) {
 				if ("管理员".equals(userList.get(i).getType())) {
->>>>>>> a973370c39b720d1def76d226b64b8636ef12d88
 					userList.remove(i);
 				}
 			}
@@ -133,12 +128,18 @@ public class UserServlet extends HttpServlet {
 				out.print("fail");
 			}
 		} else if ("getAllMagazine".equals(method)) {
-			String state =request.getParameter("state");
 			List<Magazine> magazineList = new ArrayList<>();
-			magazineList = magazineDao.getAllMagazineByState(state);
+			magazineList = magazineDao.getAllMagazineByState("");
 			request.setAttribute("magazineList", magazineList);
 			request.getRequestDispatcher("magazinemanager.jsp").forward(request, response);
-		
+		} else if ("delete".equals(method)) {
+			int magazineId = Integer.parseInt(request.getParameter("id"));
+			int result = magazineDao.deleteMagazineById(magazineId);
+			if (result > 0) {
+				out.print("success");
+			} else {
+				out.print("fail");
+			}
 		}
 	}
 

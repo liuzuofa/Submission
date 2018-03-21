@@ -72,8 +72,9 @@
 													<td>${user.education}</td>
 													<td>${user.tel}</td>
 													<td>${user.address}</td>
-													<td><input type="button" value="删除"
-														onClick='deleteUser("${user.id}")' /></td>
+													<td><a class="waves-effect waves-light btn" 
+														onClick='deleteUser("${user.id}")' >删除</a>
+													</td>
 												</tr>
 											</c:forEach>
 										</tbody>

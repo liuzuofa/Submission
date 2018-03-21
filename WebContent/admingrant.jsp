@@ -72,8 +72,9 @@
 													<td>${user.education}</td>
 													<td>${user.tel}</td>
 													<td>${user.address}</td>
-													<td><input type="button" value="授权"
-														onClick='grantUser("${user.id}","${user.type}")' /></td>
+													<td><a class="waves-effect waves-light btn" 
+														onClick='grantUser("${user.id}","${user.type}")' >授权</a>
+													</td>
 												</tr>
 											</c:forEach>
 										</tbody>

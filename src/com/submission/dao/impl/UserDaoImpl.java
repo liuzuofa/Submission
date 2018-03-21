@@ -56,7 +56,7 @@ public class UserDaoImpl extends DBUtil implements UserDao {
 			int ii = super.execUpdate(sql2, i,1);
 			return ii;
 		}
-		return i;
+		return 0;
 	}
 
 	@Override
