@@ -26,7 +26,7 @@ public class MagazineDaoImpl extends DBUtil implements MagazineDao {
 	
 	@Override
 	public int deleteMagazineById(int id) {
-		String sql = "delect from magazine where id = ? ";
+		String sql = "delete from magazine where id = ? ";
 		return super.execUpdate(sql,id);
 	}
 

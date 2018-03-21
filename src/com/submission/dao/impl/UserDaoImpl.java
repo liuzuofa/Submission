@@ -56,7 +56,7 @@ public class UserDaoImpl extends DBUtil implements UserDao {
 			int ii = super.execUpdate(sql2, i,1);
 			return ii;
 		}
-		return 0;
+		return i;
 	}
 
 	@Override
@@ -207,7 +207,7 @@ public class UserDaoImpl extends DBUtil implements UserDao {
 			}else if("主编".endsWith(type)) {
 				userType = 4;
 			} 
-			return super.execUpdate(sql2, i,userType);
+			return super.execUpdate(sql2, id,userType);
 		}
 		return i;
 	}
