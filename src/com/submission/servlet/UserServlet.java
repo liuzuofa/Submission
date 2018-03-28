@@ -3,6 +3,7 @@ package com.submission.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -135,6 +136,29 @@ public class UserServlet extends HttpServlet {
 		} else if ("delete".equals(method)) {
 			int magazineId = Integer.parseInt(request.getParameter("id"));
 			int result = magazineDao.deleteMagazineById(magazineId);
+			if (result > 0) {
+				out.print("success");
+			} else {
+				out.print("fail");
+			}
+		} else if("getAllSubject".equals(method)){
+			List<String> subjectList = magazineDao.getAllSubject();
+			out.print(new Gson().toJson(subjectList));
+		} else if ("addSubject".equals(method)) {
+			String subject =request.getParameter("subject");
+			int result = magazineDao.addSubject(subject);
+			if (result > 0) {
+				out.print("<script>alert('学科添加成功');location.href='UserServlet?method=getSubjectExpert'</script>");
+			} else {
+				out.print("<script>alert('学科添加失败，请重新添加');location.href='UserServlet?method=getSubjectExpert'</script>");
+			}
+		} else if("getSubjectExpert".equals(method)) {
+			HashMap<String, Object> expertList = magazineDao.getSubjectExpert();
+			request.setAttribute("expertList", expertList);
+			request.getRequestDispatcher("adminsubjectmanager.jsp").forward(request, response);
+		} else if("deleteSubject".equals(method)) {
+			String subject =request.getParameter("subject");
+			int result = magazineDao.deleteSubject(subject);
 			if (result > 0) {
 				out.print("success");
 			} else {

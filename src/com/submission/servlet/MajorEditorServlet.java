@@ -78,6 +78,8 @@ public class MajorEditorServlet extends HttpServlet {
 			int result = periodicalDao.addPeriodical(periodical);
 			if (result > 0) {
 				out.print("<script>alert('期刊创建成功');location.href='majoreditornewperiodical.jsp'</script>");
+			} else {
+				out.print("<script>alert('期刊创建失败，请重新创建');location.href='majoreditornewperiodical.jsp'</script>");
 			}
 		} else if ("periodicalManager".equals(method)) {
 			List<Periodical> periodicalList = new ArrayList<>();

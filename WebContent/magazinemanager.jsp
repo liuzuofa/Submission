@@ -36,7 +36,7 @@
         <div id="page-wrapper">
             <div class="header">
                 <h1 class="page-header">
-                                                我的稿件
+                                                稿件管理
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#">Home</a></li>

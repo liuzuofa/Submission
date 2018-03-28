@@ -10,10 +10,28 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-03-19 20:00:01
+Date: 2018-03-29 07:46:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for expert_subject
+-- ----------------------------
+DROP TABLE IF EXISTS `expert_subject`;
+CREATE TABLE `expert_subject` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `expert_id` int(11) DEFAULT NULL,
+  `subject_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of expert_subject
+-- ----------------------------
+INSERT INTO `expert_subject` VALUES ('1', '3', '1');
+INSERT INTO `expert_subject` VALUES ('2', '4', '2');
+INSERT INTO `expert_subject` VALUES ('3', '5', '9');
 
 -- ----------------------------
 -- Table structure for magazine
@@ -98,6 +116,7 @@ INSERT INTO `permission` VALUES ('13', '个人中心', 'personal.jsp');
 INSERT INTO `permission` VALUES ('14', '用户管理', 'UserServlet?method=getAllUsers');
 INSERT INTO `permission` VALUES ('15', '授权管理', 'UserServlet?method=getGrantUsers');
 INSERT INTO `permission` VALUES ('16', '稿件管理', 'UserServlet?method=getAllMagazine');
+INSERT INTO `permission` VALUES ('17', '学科领域', 'UserServlet?method=getSubjectExpert');
 
 -- ----------------------------
 -- Table structure for role
@@ -151,6 +170,27 @@ INSERT INTO `role_permission` VALUES ('19', '4', '13');
 INSERT INTO `role_permission` VALUES ('20', '5', '14');
 INSERT INTO `role_permission` VALUES ('21', '5', '15');
 INSERT INTO `role_permission` VALUES ('22', '5', '16');
+INSERT INTO `role_permission` VALUES ('23', '5', '17');
+
+-- ----------------------------
+-- Table structure for subject
+-- ----------------------------
+DROP TABLE IF EXISTS `subject`;
+CREATE TABLE `subject` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `subject` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of subject
+-- ----------------------------
+INSERT INTO `subject` VALUES ('1', '计算机技术');
+INSERT INTO `subject` VALUES ('3', '自动化技术及设备');
+INSERT INTO `subject` VALUES ('4', '流控技术');
+INSERT INTO `subject` VALUES ('6', '远动技术');
+INSERT INTO `subject` VALUES ('7', '自动化技术经济');
+INSERT INTO `subject` VALUES ('8', '物联网技术');
 
 -- ----------------------------
 -- Table structure for user
@@ -174,11 +214,10 @@ CREATE TABLE `user` (
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', 'summer', '1234', '读者', '张三', '本科', '123', '广州', '授权');
-INSERT INTO `user` VALUES ('2', 'tom', '123', '编辑', '李四', '研究生', '123', '深圳', '未授权');
+INSERT INTO `user` VALUES ('2', 'tom', '123', '编辑', '李四', '研究生', '123', '深圳', '授权');
 INSERT INTO `user` VALUES ('3', 'jack', '123', '专家', '王老五', '博士', '123', '上海', '授权');
 INSERT INTO `user` VALUES ('4', 'ben', '123', '主编', '本', '研究生', '123', '北京', '授权');
 INSERT INTO `user` VALUES ('5', 'tomcat', '123', '管理员', '汤姆', '本科', '123', '广州', '授权');
-INSERT INTO `user` VALUES ('8', '111', '111', '专家', '111', '111', '111', '111', '未授权');
 
 -- ----------------------------
 -- Table structure for user_role
@@ -189,13 +228,13 @@ CREATE TABLE `user_role` (
   `user_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_role
 -- ----------------------------
 INSERT INTO `user_role` VALUES ('1', '1', '1');
-INSERT INTO `user_role` VALUES ('2', '2', '2');
 INSERT INTO `user_role` VALUES ('3', '3', '3');
 INSERT INTO `user_role` VALUES ('4', '4', '4');
 INSERT INTO `user_role` VALUES ('5', '5', '5');
+INSERT INTO `user_role` VALUES ('6', '2', '2');

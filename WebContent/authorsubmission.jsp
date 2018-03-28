@@ -62,14 +62,14 @@
 											</tr>
 											<tr>
 												<td>学科</td>
-												<td><select class="form-control" name="subject">
-														<option value="自动化基础理论">自动化基础理论</option>
+												<td><select id="subject" class="form-control" name="subject">
+														<!-- <option value="自动化基础理论">自动化基础理论</option>
 														<option value="自动化技术及设备">自动化技术及设备</option>
 														<option value="计算机技术">计算机技术</option>
 														<option value="流控技术">流控技术</option>
 														<option value="遥感技术">遥感技术</option>
 														<option value="远动技术">远动技术</option>
-														<option value="自动化技术经济">自动化技术经济</option>
+														<option value="自动化技术经济">自动化技术经济</option> -->
 												</select></td>
 											</tr>
 											<tr>
@@ -121,6 +121,26 @@
 	<script src="assets/js/custom-scripts.js"></script>
 	<script type="text/javascript">
        $("#type").hide();
+       $.ajax({
+           type : "post",
+           url : "UserServlet",
+           data : {"method":"getAllSubject"},
+           dataType: 'json',
+           success : function(result) {
+        	   console.log(result);
+               addBody(result);
+           }
+       });
+       var odiv=document.getElementById("subject");
+       function addBody(result) {
+           //result是一个集合,所以需要先遍历
+           $.each(result,function(index, obj) {
+               var par=document.createElement("option");
+               par.value = obj;
+               par.innerHTML = obj;
+               odiv.appendChild(par);
+           });
+       }
     </script>
 </body>
 </html>

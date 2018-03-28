@@ -36,10 +36,10 @@
 		<!-- right -->
 		<div id="page-wrapper">
 			<div class="header">
-				<h1 class="page-header">用户管理</h1>
+				<h1 class="page-header">学科管理</h1>
 				<ol class="breadcrumb">
 					<li><a href="#">Home</a></li>
-					<li><a href="#">AllUsers</a></li>
+					<li><a href="#">Subject Manager</a></li>
 				</ol>
 			</div>
 			<div id="page-inner">
@@ -48,40 +48,22 @@
 						<div class="card">
 							<div class="card-action"></div>
 							<div class="card-content">
-								<form name=form1 action="SubmissionServlet?method=addMagazine"
-									enctype="multipart/form-data" method=post>
-									<table class="table table-striped table-bordered table-hover"
-										id="dataTables-example">
-										<thead>
-											<tr>
-												<td>#</td>
-												<td>姓名</td>
-												<td>类型</td>
-												<td>学历</td>
-												<td>电话</td>
-												<td>地址</td>
-												<td>状态</td>
-												<td>操作</td>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach items="${userList}" var="user" varStatus="status">
-												<tr>
-													<td>${status.index + 1}</td>
-													<td>${user.name}</td>
-													<td>${user.type}</td>
-													<td>${user.education}</td>
-													<td>${user.tel}</td>
-													<td>${user.address}</td>
-													<td>${user.state}</td>
-													<td><a class="waves-effect waves-light btn" 
-														onClick='deleteUser("${user.id}")' >删除</a>
-													</td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-								</form>
+								<form class="form-horizontal"
+                                    action="UserServlet?method=addSubject" method="post">
+                                    <div class="form-group">
+                                        <label for="inputText" class="col-sm-2 control-label">学科领域</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="subject"
+                                                id="inputText" >
+                                        </div>
+                                    </div>
+                                    <div class="form-inline">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" class="btn btn-default">增加领域</button>
+                                            <button type="reset" class="btn btn-default">取消</button>
+                                        </div>
+                                    </div>
+                                </form>
 								<div class="clearBoth">
 									<br />
 								</div>
@@ -108,18 +90,18 @@
 	<!-- Custom Js -->
 	<script src="assets/js/custom-scripts.js"></script>
 	<script type="text/javascript">
-	    function deleteUser(id) {
+	    function grantUser(id,type) {
 	        $.ajax({
 	            type : "post",
 	            url : "UserServlet",
-	            data : {"method":"deleteUser","id":id },
+	            data : {"method":"grantUser","id":id,"type":type},
 	            success : function(result) {
 	                console.log(result);
 	            	if(result == "success") {
-	                    alert("删除成功")
+	                    alert("授权成功")
 	                    location.reload();
 	                } else {
-	                    alert("删除失败，请重新删除")
+	                    alert("授权失败，请重新授权")
 	                }
 	            }
 	        });

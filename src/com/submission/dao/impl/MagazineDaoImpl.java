@@ -3,6 +3,7 @@ package com.submission.dao.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.submission.dao.MagazineDao;
@@ -295,4 +296,54 @@ public class MagazineDaoImpl extends DBUtil implements MagazineDao {
 		}
 		return magazines;
 	}
+
+	@Override
+	public List<String> getAllSubject() {
+		String sql = " select * from subject ";
+		ResultSet rs = super.execQuery(sql);
+		List<String> subjectList = new ArrayList<>();
+		try {
+			while (rs.next()) {
+				String sub = rs.getString(2);
+				subjectList.add(sub);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return subjectList;
+	}
+
+	@Override
+	public int addSubject(String subject) {
+		String sql = " insert into subject (subject) values (?) ";
+		return super.execUpdate(sql, subject);
+	}
+	
+	@Override
+	public int deleteSubject(String subject) {
+		String sql = " delete from subject where subject = ? ";
+		return super.execUpdate(sql, subject);
+	}
+
+	@Override
+	public HashMap<String, Object> getSubjectExpert() {
+		String sql = " select subject.subject, sum(case when expert_subject.subject_id = subject.id then 1 else 0 end ) "
+				+ "from subject LEFT JOIN expert_subject on subject.id =expert_subject.subject_id GROUP BY subject.id ";
+		ResultSet rs = super.execQuery(sql);
+		HashMap<String, Object> expertList = new HashMap<String, Object>();
+		try {
+			while (rs.next()) {
+				String subject = rs.getString(1);
+				int count = rs.getInt(2);
+				expertList.put(subject, count);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return expertList;
+	}
+	
+	
 }

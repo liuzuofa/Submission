@@ -10,7 +10,8 @@
 <link href="css/style.css" type="text/css" rel="stylesheet" />
 <link href="css/main.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="js/pptBox.js"></script>
-
+<!-- jQuery Js -->
+<script src="assets/js/jquery-1.10.2.js"></script>  
 </head>
 
 <body style="background:url(images/bj.jpg) repeat-x;">
@@ -100,47 +101,34 @@
 								<p>（2）用您填写的账号和密码登录本系统，进入本系统浏览文章或者订阅期刊。</p>
 								<p>如果您已经注册过，请在下面的输入框中填写E-mail和密码，登录进入本系统，如果您忘记了自己的密码，请点击这里：找回密码。</p>
 							</div>
-							<div class=biaodan>
-								<form name=form1 action="RegisterServlet" method=post >
+							<div class="biaodan">
+								<form name="form1" action="RegisterServlet" method="post" >
 									<ul>
-									  <li>邮&nbsp;&nbsp;&nbsp;箱：<input name="email" valid=required errmsg='账号不能为空' type="text" > <span id=errMsg_Name style=color:#FF0000></span></li>
-									  <li>密&nbsp;&nbsp;&nbsp;码：<input name="password" valid=required errmsg='密码不能为空' type="password"> <span id=errMsg_Name style=color:#FF0000></span></li>
-									  <li>类&nbsp;&nbsp;&nbsp;型：<select class="form-control" name="type">
+									  <li>邮&nbsp;&nbsp;&nbsp;箱：<input name="email"  type="text" /> </li>
+									  <li>密&nbsp;&nbsp;&nbsp;码：<input name="password"  type="password" /></li>
+									  <li id="type">类&nbsp;&nbsp;&nbsp;型：<select id="type1" onchange="show()" class="form-control" name="type">
 																  <option value="读者">读者</option>
 																  <option value="编辑">编辑</option>
 																  <option value="专家">专家</option>
 																  <option value="主编">主编</option>
-                                                                </select> <span id=errMsg_Name style=color:#FF0000></span></li>
-                                      <li>名&nbsp;&nbsp;&nbsp;字：<input name="name" valid=required errmsg='密码不能为空' type="text"> <span id=errMsg_Name style=color:#FF0000></span></li>
-                                      <li>学&nbsp;&nbsp;&nbsp;历：<input name="education" valid=required errmsg='账号不能为空' type="text"> <span id=errMsg_Name style=color:#FF0000></span></li>
-                                      <li>电&nbsp;&nbsp;&nbsp;话：<input name="tel" valid=required errmsg='密码不能为空' type="text"> <span id=errMsg_Name style=color:#FF0000></span></li>
-                                      <li>地&nbsp;&nbsp;&nbsp;址：<input name="address" valid=required errmsg='账号不能为空' type="text"> <span id=errMsg_Name style=color:#FF0000></span></li>
-										<input style="width:50px; height:25px;" type=submit name=sub class=sub value=提交> 
-										<input type=reset style="width:50px; height:25px;" name=sub class=sub value=重置>
+                                                                </select> </li>
+                                      <li id="field">领&nbsp;&nbsp;&nbsp;域：<select id="field1" class="form-control" name="field">
+                                                                  <option value="读者">读者</option>
+                                                                  <option value="编辑">编辑</option>
+                                                                  <option value="专家">专家</option>
+                                                                  <option value="主编">主编</option>
+                                                                </select> </li>                          
+                                      <li>名&nbsp;&nbsp;&nbsp;字：<input name="name"  type="text" /> </li>
+                                      <li>学&nbsp;&nbsp;&nbsp;历：<input name="education"  type="text" /> </li>
+                                      <li>电&nbsp;&nbsp;&nbsp;话：<input name="tel"  type="text" /> </li>
+                                      <li>地&nbsp;&nbsp;&nbsp;址：<input name="address"  type="text" /> </li>
+									  <li>
+									      <input  type="submit"  value="提交" style="width:50px; height:25px;"/> 
+										  <input type="reset" value="重置" style="width:50px; height:25px;"/>
 									  </li>
 									</ul>
 								</form>
 							</div>
-							<!-- <script type=text/javascript src=/scripts/FormValid.js></script>
-							<script type=text/javascript>
-								FormValid.showError = function(errMsg) {
-									var msg = '';
-									for (key in errMsg) {
-										msg += errMsg[key] + '<br>';
-									}
-									document.getElementById('errorMsg').innerHTML = msg;
-								}
-							</script>
-							<script type=text/javascript>
-								FormValid.showError = function(errMsg,errName) {
-									for (key in FormValid.allName) {
-										document.getElementById('errMsg_'+FormValid.allName[key]).innerHTML = '';
-									}
-									for (key in errMsg) {
-										document.getElementById('errMsg_'+errName[key]).innerHTML = errMsg[key];
-									}
-								}
-							</script> -->
 						</div>
 					</div>
 					<div class="sub_right_bottom"></div>
@@ -159,5 +147,38 @@
 			</div>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+	if ($("#type1").val() == "读者") {
+        $("#field").hide();
+    } else {
+        $("#field").show();
+    }
+	function show() {
+		console.log($("#type1").val());
+		if ($("#type1").val() == "专家") {
+	        $("#field").show();
+	    } else {
+	    	$("#field").hide();
+	    }
+	}
+            function refuse(a,name) {
+                mid = a;
+                console.log("mid = " + mid);
+                $.ajax({
+                    type : "post",
+                    url : "ExpertServlet",
+                    data : {"method":"refuse","mid":mid,"operator":name},
+                    success : function(result) {
+                        //console.log(result);
+                       if ("success" == result) {
+                           alert("拒绝成功");
+                           window.location.reload();
+                       }
+                    }
+                });
+            }
+    </script>
+        
 </body>
 </html>

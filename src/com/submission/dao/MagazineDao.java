@@ -1,5 +1,6 @@
 package com.submission.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.submission.entity.Magazine;
@@ -55,5 +56,17 @@ public interface MagazineDao {
 		
 		//根据状态和专家查询所有稿件
 		public List<Magazine> getAllMagazineByStateAndExpert(String state, String expert);
+		
+		//获取技术类别
+		public List<String> getAllSubject();
+		
+		//增加学科领域
+		public int addSubject(String subject);
+		
+		//减少学科领域
+		public int deleteSubject(String subject);
+		
+		//查询该学科领域下有多少专家
+		public HashMap<String,Object> getSubjectExpert();
 		
 }
